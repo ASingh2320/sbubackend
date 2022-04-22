@@ -41,6 +41,13 @@ app.use(cors())
     })
   })
 
+  //Get request returns building entered in the database
+  app.get('/api/buildings/:name', (request, response) => {
+    Building.find({name: request.params.name}).then(buildings => {
+      response.json(buildings)
+    })
+  })
+
   //Post request to add buildings into the database
   app.post('/api/buildings', (request, response, next) => {
     const body = request.body
